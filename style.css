@@ -1,0 +1,692 @@
+/* cores principais */
+:root {
+  --azul: #005ca9;
+  --azul-escuro: #00467f;
+  --azul-claro: #edf5fc;
+
+  --laranja: #ff8a00;
+  --laranja-escuro: #e57900;
+
+  --branco: #ffffff;
+  --fundo: #f3f5f8;
+  --texto: #253347;
+  --texto-secundario: #626d7c;
+  --borda: #dce2e9;
+}
+
+/* configurações gerais */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* cabeçalho */
+.cabecalho {
+  height: 88px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  background: var(--branco);
+  border-top: 4px solid var(--laranja);
+  border-bottom: 1px solid var(--borda);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  background: var(--azul);
+  color: var(--branco);
+  border-radius: 8px;
+
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.marca h1 {
+  font-size: 24px;
+  letter-spacing: -0.8px;
+}
+
+.marca h1 span {
+  color: var(--azul);
+}
+
+.marca p {
+  margin-top: 4px;
+
+  color: var(--texto-secundario);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.aviso-prototipo {
+  padding: 8px 14px;
+
+  background: #fff3e6;
+  color: #945000;
+
+  border: 1px solid #ffd7ac;
+  border-radius: 20px;
+
+  font-size: 12px;
+}
+
+/* estrutura principal */
+.layout {
+  display: flex;
+  min-height: calc(100vh - 88px);
+}
+
+/* menu lateral */
+.menu-lateral {
+  width: 285px;
+  flex-shrink: 0;
+  padding: 30px 22px 22px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--branco);
+  border-right: 1px solid var(--borda);
+}
+
+.legenda {
+  color: var(--texto-secundario);
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+}
+
+.titulo-lista {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 10px 0 24px;
+}
+
+.titulo-lista h2 {
+  font-size: 25px;
+}
+
+#quantidade {
+  padding: 3px 8px;
+
+  background: var(--azul-claro);
+  color: var(--azul);
+  border-radius: 5px;
+
+  font-size: 12px;
+}
+
+.rotulo-busca {
+  display: block;
+  margin-bottom: 8px;
+
+  color: var(--texto-secundario);
+  font-size: 12px;
+}
+
+#busca {
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+
+  background: #fafbfc;
+  color: var(--texto);
+
+  font-size: 12px;
+}
+
+.lista-legenda {
+  margin: 26px 0 12px;
+  font-size: 9px;
+}
+
+#lista-projetos {
+  display: grid;
+  gap: 8px;
+}
+
+/* itens da lista */
+.item-projeto {
+  width: 100%;
+  padding: 16px 14px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+
+  text-align: left;
+
+  background: var(--branco);
+  color: var(--texto);
+
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.item-projeto:hover {
+  background: #f3f6fa;
+}
+
+.item-projeto.ativo {
+  background: var(--azul-claro);
+  border-color: #b8d5ef;
+  box-shadow: inset 3px 0 var(--laranja);
+}
+
+.item-projeto small {
+  color: var(--azul);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.item-projeto strong {
+  font-size: 13px;
+}
+
+.item-projeto span {
+  color: var(--texto-secundario);
+  font-size: 11px;
+}
+
+.lista-vazia {
+  padding: 12px 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+}
+
+/* seletor de arquivo */
+.parte-inferior {
+  margin-top: 35px;
+}
+
+/* esconde visualmente o input, mantendo acesso pelo teclado */
+.entrada-arquivo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.botao-principal {
+  display: block;
+  width: 100%;
+  padding: 14px 10px;
+
+  background: var(--laranja);
+  color: #142b43;
+
+  border: none;
+  border-radius: 6px;
+
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-principal:hover {
+  background: var(--laranja-escuro);
+}
+
+.entrada-arquivo:focus-visible + .botao-principal {
+  outline: 3px solid var(--azul);
+  outline-offset: 3px;
+}
+
+.texto-ajuda {
+  margin-top: 10px;
+
+  color: var(--texto-secundario);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.aviso-seguranca {
+  margin-top: 25px;
+  padding-top: 18px;
+
+  border-top: 1px solid var(--borda);
+
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.aviso-seguranca p {
+  color: var(--texto-secundario);
+}
+
+/* conteúdo principal */
+main {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 32px;
+}
+
+.caminho {
+  margin-bottom: 26px;
+  color: var(--texto-secundario);
+  font-size: 11px;
+}
+
+.caminho span {
+  margin: 0 10px;
+  color: #9aa5b3;
+}
+
+.informacoes-projeto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-bottom: 24px;
+}
+
+.informacoes-projeto > div {
+  min-width: 0;
+}
+
+.codigo {
+  color: var(--azul);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+#nome-projeto {
+  margin: 8px 0;
+
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  overflow-wrap: anywhere;
+}
+
+#descricao-projeto {
+  color: var(--texto-secundario);
+  font-size: 12px;
+}
+
+.revisao {
+  flex-shrink: 0;
+  padding: 8px 12px;
+
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 5px;
+
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* painel */
+.painel {
+  overflow: hidden;
+
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+.barra-ferramentas {
+  padding: 10px 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  border-bottom: 1px solid var(--borda);
+}
+
+.controles-zoom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.barra-ferramentas button,
+.controles-pagina button {
+  min-height: 38px;
+  padding: 8px 12px;
+
+  background: var(--branco);
+  color: var(--texto);
+
+  border: 1px solid var(--borda);
+  border-radius: 5px;
+
+  font-size: 12px;
+}
+
+.barra-ferramentas button:hover,
+.controles-pagina button:hover {
+  background: var(--azul-claro);
+}
+
+#valor-zoom {
+  min-width: 55px;
+  text-align: center;
+  font-size: 12px;
+}
+
+#ajustar {
+  margin-left: 8px;
+}
+
+/* área do desenho */
+.area-visualizacao {
+  height: calc(100vh - 390px);
+  min-height: 350px;
+  padding: 24px;
+
+  overflow: auto;
+
+  background-color: #e7ecf2;
+  background-image: radial-gradient(#c5cdd8 0.7px, transparent 0.7px);
+  background-size: 16px 16px;
+}
+
+#quadro-imagem {
+  width: 100%;
+  margin: auto;
+}
+
+#imagem-projeto {
+  display: block;
+  width: 100%;
+
+  background: var(--branco);
+  box-shadow: 0 3px 15px #25334715;
+}
+
+#pdf-projeto {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  background: var(--branco);
+}
+
+/* informações abaixo do desenho */
+.barra-inferior {
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  border-top: 1px solid var(--borda);
+}
+
+#mensagem {
+  color: var(--texto-secundario);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.controles-pagina {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.controles-pagina button {
+  padding: 3px 12px;
+  font-size: 22px;
+}
+
+#numero-pagina {
+  color: var(--texto-secundario);
+  font-size: 11px;
+}
+
+.dica {
+  margin-top: 12px;
+
+  color: var(--texto-secundario);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.link-pdf {
+  display: inline-block;
+  margin-top: 10px;
+
+  color: var(--azul);
+  font-size: 13px;
+}
+
+/* tela cheia */
+.painel:fullscreen {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  border-radius: 0;
+}
+
+.painel:fullscreen .area-visualizacao {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+
+/* tablets */
+@media (max-width: 900px) {
+  .menu-lateral {
+    width: 230px;
+    padding: 25px 15px;
+  }
+
+  main {
+    padding: 24px 18px;
+  }
+
+  .barra-inferior {
+    flex-wrap: wrap;
+  }
+}
+
+/* celulares */
+@media (max-width: 640px) {
+  .cabecalho {
+    height: 78px;
+    padding: 0 14px;
+    gap: 8px;
+  }
+
+  .marca {
+    gap: 8px;
+  }
+
+  .marca h1 {
+    font-size: 20px;
+  }
+
+  .marca p {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+
+  .logo {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+  .aviso-prototipo {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .menu-lateral {
+    width: 100%;
+    padding: 20px 16px;
+
+    border-right: none;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  #lista-projetos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .item-projeto {
+    padding: 12px 8px;
+  }
+
+  .item-projeto strong {
+    font-size: 11px;
+  }
+
+  .item-projeto span {
+    display: none;
+  }
+
+  .parte-inferior {
+    margin-top: 20px;
+  }
+
+  .aviso-seguranca {
+    display: none;
+  }
+
+  main {
+    padding: 20px 14px;
+  }
+
+  #nome-projeto {
+    font-size: 22px;
+  }
+
+  .informacoes-projeto {
+    gap: 10px;
+  }
+
+  .barra-ferramentas {
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+
+  .barra-ferramentas button {
+    padding: 8px;
+  }
+
+  .area-visualizacao {
+    height: 45vh;
+    min-height: 300px;
+    padding: 12px;
+  }
+}
+/* botão para salvar o arquivo aberto */
+.botao-salvar {
+  padding: 10px 14px;
+
+  background: var(--azul);
+  color: var(--branco);
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.botao-salvar:hover {
+  background: var(--azul-escuro);
+}
+
+.botao-salvar:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* lista dos projetos salvos */
+.lista-salvos {
+  display: grid;
+  gap: 8px;
+}
+
+.lista-salvos .item-projeto {
+  overflow-wrap: anywhere;
+}
+
+.aviso-salvos {
+  color: var(--texto-secundario);
+  font-size: 12px;
+  line-height: 1.6;
+}

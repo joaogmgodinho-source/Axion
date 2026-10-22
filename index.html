@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ConecTorno — Visualizador de projetos</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+
+  <body>
+    <!-- cabeçalho -->
+    <header class="cabecalho">
+      <div class="marca">
+        <div class="logo">CT</div>
+
+        <div>
+          <h1>Conec<span>Torno</span></h1>
+          <p>PROJETO INTEGRADOR · SENAI</p>
+        </div>
+      </div>
+
+      <span class="aviso-prototipo">Protótipo visual</span>
+    </header>
+
+    <div class="layout">
+      <!-- menu lateral -->
+      <aside class="menu-lateral">
+        <div>
+          <p class="legenda">ÁREA DE TRABALHO</p>
+
+          <div class="titulo-lista">
+            <h2>Projetos</h2>
+            <span id="quantidade">0</span>
+          </div>
+
+          <label class="rotulo-busca" for="busca"> Buscar projeto </label>
+
+          <input
+            type="search"
+            id="busca"
+            placeholder="Nome da peça ou código"
+          />
+
+          <p class="legenda lista-legenda">PROJETOS DE EXEMPLO</p>
+
+          <nav id="lista-projetos" aria-label="Projetos disponíveis"></nav>
+        </div>
+
+        <div class="parte-inferior">
+          <!-- o label abre o seletor diretamente pelo html -->
+          <input
+            type="file"
+            id="arquivo"
+            class="entrada-arquivo"
+            accept=".pdf,.png,.jpg,.jpeg,.webp"
+          />
+
+          <label for="arquivo" class="botao-principal">
+            + Abrir PDF ou imagem
+          </label>
+
+          <p class="texto-ajuda">
+            PDF, PNG, JPG ou WebP.<br />
+            O arquivo é aberto apenas neste navegador.
+          </p>
+
+          <div class="aviso-seguranca">
+            <strong>Somente visualização</strong>
+            <p>Sem conexão com o comando do torno.</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- conteúdo principal -->
+      <main>
+        <p class="caminho">
+          Oficina <span>/</span> Projetos <span>/</span>
+          Visualizador
+        </p>
+
+        <section class="informacoes-projeto">
+          <div>
+            <p id="codigo-projeto" class="codigo"></p>
+            <h2 id="nome-projeto">Selecione um projeto</h2>
+            <p id="descricao-projeto"></p>
+          </div>
+
+          <span id="revisao-projeto" class="revisao"></span>
+        </section>
+
+        <section id="painel" class="painel">
+          <!-- controles -->
+          <div class="barra-ferramentas">
+            <div class="controles-zoom">
+              <button id="diminuir" type="button" aria-label="Diminuir zoom">
+                −
+              </button>
+
+              <output id="valor-zoom" aria-live="polite"> 100% </output>
+
+              <button id="aumentar" type="button" aria-label="Aumentar zoom">
+                +
+              </button>
+
+              <button id="ajustar" type="button">Ajustar</button>
+            </div>
+
+            <button id="tela-cheia" type="button">Tela cheia</button>
+          </div>
+
+          <!-- imagem ou pdf -->
+          <div id="area-visualizacao" class="area-visualizacao">
+            <div id="quadro-imagem">
+              <img
+                id="imagem-projeto"
+                alt="Desenho do projeto selecionado"
+                draggable="false"
+              />
+            </div>
+
+            <iframe
+              id="pdf-projeto"
+              title="Visualizador do PDF selecionado"
+              hidden
+            ></iframe>
+          </div>
+
+          <div class="barra-inferior">
+            <p id="mensagem" role="status"></p>
+
+            <div class="controles-pagina">
+              <button
+                id="pagina-anterior"
+                type="button"
+                aria-label="Página anterior"
+              >
+                ‹
+              </button>
+
+              <span id="numero-pagina"></span>
+
+              <button
+                id="proxima-pagina"
+                type="button"
+                aria-label="Próxima página"
+              >
+                ›
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <p id="dica" class="dica"></p>
+
+        <a
+          id="abrir-pdf-externo"
+          class="link-pdf"
+          target="_blank"
+          rel="noopener"
+          hidden
+        >
+          Abrir PDF em outra aba
+        </a>
+
+        <noscript>
+          Ative o JavaScript do navegador para visualizar os arquivos.
+        </noscript>
+      </main>
+    </div>
+  </body>
+</html>
